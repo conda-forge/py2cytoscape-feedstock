@@ -1,5 +1,5 @@
 {% set name = "py2cytoscape" %}
-{% set version = "0.7.0" %}
+{% set version = "0.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: bb5be0ceb967b1e2bdb37efdc43d284f1a79c3a832fb74d644ce543f9f22d9cf
+  sha256: 473a4c7aab2ca0b406c4052560c3bf149c625c20d6528ff4a56e923939fd5430
 
 build:
-  number: 1000
+  number: 0
   script: python -m pip install --no-deps --ignore-installed .
   skip: true  # [py2k or win]
 
