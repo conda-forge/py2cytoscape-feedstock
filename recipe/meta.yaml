@@ -10,9 +10,9 @@ source:
   sha256: 473a4c7aab2ca0b406c4052560c3bf149c625c20d6528ff4a56e923939fd5430
 
 build:
-  number: 1
+  noarch: python
+  number: 2
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [py2k or win]
 
 requirements:
   build:
@@ -33,6 +33,7 @@ test:
     - ipython
     - jinja2
     - scipy
+    - pip
   imports:
     - py2cytoscape
     - py2cytoscape.cyrest
@@ -45,6 +46,8 @@ test:
     - py2cytoscape.util.util_igraph
     - py2cytoscape.util.util_networkx
     - py2cytoscape.util.util_numpy
+  commands:
+    - python -m pip check
 
 about:
   home: https://github.com/cytoscape/py2cytoscape
