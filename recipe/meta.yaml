@@ -13,11 +13,10 @@ build:
   noarch: python
   number: 2
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true
 
 requirements:
   build:
-    - python >=3
+    - python
     - pip
   run:
     - networkx
@@ -25,7 +24,7 @@ requirements:
     - pydot
     - pydotplus
     - pyparsing
-    - python >=3
+    - python
     - python-igraph
     - requests
 
@@ -34,6 +33,7 @@ test:
     - ipython
     - jinja2
     - scipy
+    - pip
   imports:
     - py2cytoscape
     - py2cytoscape.cyrest
@@ -46,6 +46,8 @@ test:
     - py2cytoscape.util.util_igraph
     - py2cytoscape.util.util_networkx
     - py2cytoscape.util.util_numpy
+  commands:
+    - python -m pip check
 
 about:
   home: https://github.com/cytoscape/py2cytoscape
