@@ -10,13 +10,14 @@ source:
   sha256: 473a4c7aab2ca0b406c4052560c3bf149c625c20d6528ff4a56e923939fd5430
 
 build:
-  number: 1
+  noarch: python
+  number: 2
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [py2k or win]
+  skip: true
 
 requirements:
   build:
-    - python
+    - python >=3
     - pip
   run:
     - networkx
@@ -24,7 +25,7 @@ requirements:
     - pydot
     - pydotplus
     - pyparsing
-    - python
+    - python >=3
     - python-igraph
     - requests
 
