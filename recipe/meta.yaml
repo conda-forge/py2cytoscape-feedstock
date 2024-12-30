@@ -6,17 +6,17 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 473a4c7aab2ca0b406c4052560c3bf149c625c20d6528ff4a56e923939fd5430
 
 build:
   noarch: python
-  number: 2
+  number: 3
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
-    - python
+  host:
+    - python {{ python_min }}
     - pip
   run:
     - networkx
@@ -24,7 +24,7 @@ requirements:
     - pydot
     - pydotplus
     - pyparsing
-    - python
+    - python >={{ python_min }}
     - python-igraph
     - requests
 
@@ -34,6 +34,7 @@ test:
     - jinja2
     - scipy
     - pip
+    - python {{ python_min }}
   imports:
     - py2cytoscape
     - py2cytoscape.cyrest
