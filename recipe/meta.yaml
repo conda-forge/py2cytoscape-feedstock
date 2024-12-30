@@ -1,23 +1,24 @@
-{% set name = "py2cytoscape" %}
 {% set version = "0.7.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: py2cytoscape
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/p/py2cytoscape/py2cytoscape-{{ version }}.tar.gz
   sha256: 473a4c7aab2ca0b406c4052560c3bf149c625c20d6528ff4a56e923939fd5430
 
 build:
-  noarch: python
   number: 3
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  noarch: python
+  script:
+    - {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check
 
 requirements:
   host:
-    - python {{ python_min }}
     - pip
+    - python {{ python_min }}
+    - setuptools
   run:
     - networkx
     - pandas
@@ -35,6 +36,8 @@ test:
     - scipy
     - pip
     - python {{ python_min }}
+    # upstream changed PyPI/module name: https://github.com/conda-forge/python-igraph-feedstock/pull/50
+    - python-igraph <0.9.8
   imports:
     - py2cytoscape
     - py2cytoscape.cyrest
@@ -48,7 +51,7 @@ test:
     - py2cytoscape.util.util_networkx
     - py2cytoscape.util.util_numpy
   commands:
-    - python -m pip check
+    - pip check
 
 about:
   home: https://github.com/cytoscape/py2cytoscape
